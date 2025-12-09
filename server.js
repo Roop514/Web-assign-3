@@ -127,7 +127,7 @@ app.get("/api/galleries/:country", (req, res) => {
     const matches = galleries.filter(g => g.GalleryCountry && g.GalleryCountry.toLowerCase() === country);
 
     if (matches.length === 0) {
-        return res.send("No galleries found from this country");
+        return res.json({ message: "No galleries found from this country" });
     }
 
     res.json(matches);
