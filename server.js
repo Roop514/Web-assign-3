@@ -105,12 +105,11 @@ app.get("/api/artists", (req, res) => {
 
 /* get artists by country */
 app.get("/api/artists/:country", (req, res) => {
-    const countryParam = req.params.country.toLowerCase();
-
-    const matches = artists.filter(a => a.country && a.country.toLowerCase() === countryParam);
+    const country = req.params.country.toLowerCase(); 
+    const matches = artists.filter(a => a.Nationality && a.Nationality.toLowerCase() === country);
 
     if (matches.length === 0) {
-        return res.json({ message: "No artists from this country" });
+        return res.json({ message: "No artists found from this country" });
     }
 
     res.json(matches);
@@ -124,11 +123,11 @@ app.get("/api/galleries", (req, res) => {
 
 /*  get galleries by country */
 app.get("/api/galleries/:country", (req, res) => {
-    const countryParam = req.params.country.toLowerCase();
-    const matches = galleries.filter(g => g.country && g.country.toLowerCase() === countryParam);
+    const country = req.params.country.toLowerCase();
+    const matches = galleries.filter(g => g.GalleryCountry && g.GalleryCountry.toLowerCase() === country);
 
     if (matches.length === 0) {
-        return res.json({ message: "No galleries from this country" });
+        return res.send("No galleries found from this country");
     }
 
     res.json(matches);
